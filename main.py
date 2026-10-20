@@ -40,7 +40,10 @@ def should_continue(state: MessageGraph):
     return REFLECT
 
 
-builder.add_conditional_edges(GENERATE, should_continue)
+
+builder.add_conditional_edges(
+    GENERATE, should_continue, {END: END, REFLECT: REFLECT}
+)
 builder.add_edge(REFLECT, GENERATE)
 
 graph = builder.compile()
